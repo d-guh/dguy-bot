@@ -92,7 +92,7 @@ const rest = new REST().setToken(token);
                             Routes.applicationCommands(clientId),
                             { body: [] },
                         );
-                        console.log(`Cleared ${data.length} commands successfully!`);
+                        console.log('Cleared commands successfully!');
                     } else {
                         console.log('Cancelled.');
                         process.exit(0);
