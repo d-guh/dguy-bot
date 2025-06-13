@@ -7,7 +7,7 @@ const data = new SlashCommandBuilder()
         subcommand
             .setName('user')
             .setDescription('Info about a user')
-            .addUserOption(option => option.setName('target').setDescription('The user')))
+            .addUserOption(option => option.setName('target').setDescription('The user'))) // TODO: Fix logging for this one, shows as undefined in options
     .addSubcommand(subcommand =>
         subcommand
             .setName('server')

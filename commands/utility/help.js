@@ -8,8 +8,10 @@ By: d.guy
 ## Utility:
 /help - Displays this menu.
 /ping - Tests the bot's response time.
+/info <subcommand> - Displays info
 /user - Displays information about the user.
 /server - Displays information about the server.
+/echo - Repeats a message
 ## Fun:
 /flip - Flips a coin!
 \`\`\``;
