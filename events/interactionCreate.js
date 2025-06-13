@@ -1,4 +1,5 @@
 const { Events, MessageFlags } = require('discord.js');
+const { logInteraction, logError } = require('../utils/log');
 
 module.exports = {
     name: Events.InteractionCreate,
@@ -6,6 +7,8 @@ module.exports = {
         if (!interaction.isChatInputCommand()) return;
 
         const command = interaction.client.commands.get(interaction.commandName);
+
+        logInteraction(interaction);
 
         if (!command) {
             console.error(`No command matching ${interaction.commandName} was found.`);
@@ -15,11 +18,14 @@ module.exports = {
         try {
             await command.execute(interaction);
         } catch (error) {
-            console.error(error);
+            logError(interaction, error);
+
+            const reply = { content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral };
+
             if (interaction.replied || interaction.deferred) {
-                await interaction.followUp({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
+                await interaction.followUp(reply);
             } else {
-                await interaction.reply({ content: 'There was an error while executing this command!', flags: MessageFlags.Ephemeral });
+                await interaction.reply(reply);
             }
         }
     },
